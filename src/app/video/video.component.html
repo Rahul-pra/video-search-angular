@@ -1,0 +1,26 @@
+<div class="container text-center">
+    <h1>Video serach</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="search-hero">
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                placeholder="Search Videos">
+        </div>
+
+        <!-- Grid row -->
+        <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-lg-4 col-md-12 mb-4" *ngFor="let video of videoList | filter:searchText">
+                <div class="embed-responsive embed-responsive-16by9 ">
+                    <iframe class="img-fluid z-depth-1" [src]="sanitizerByPass(video.url)" allowfullscreen></iframe>
+                </div>
+                <!-- <video width="640" height="360" id="player1">
+                    <source type="video/youtube" src="{{safeURL}}" />
+                </video> -->
+                <button (click)="playVideo(video)" class="btn btn-primary">Play</button>
+                <div>{{video.title}}</div>
+            </div>
+            <!-- Grid column -->
+        </div>
+    </div>
